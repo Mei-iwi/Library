@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gia hạn tài liệu - Thư viện ĐH Công Thương</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      .header-container {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+      }
+      .logo {
+        width: 80px;
+        height: auto;
+        margin-right: 20px;
+      }
+      .header-text h1 {
+        color: #0066cc;
+        margin: 0;
+        font-size: 20px;
+      }
+      .header-text p {
+        margin: 5px 0 0;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .nav-container {
+        background-color: #000;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+      }
+      .home-link {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-weight: bold;
+      }
+      .search-box {
+        display: flex;
+        flex: 1;
+      }
+      .search-box input {
+        flex: 1;
+        padding: 8px;
+        border: none;
+        border-radius: 4px 0 0 4px;
+      }
+      .search-box button {
+        padding: 8px 15px;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+      }
+      .page-title,
+      .sub-title {
+        padding: 10px 20px;
+        font-weight: bold;
+      }
+      .sub-title {
+        color: #0066cc;
+        font-size: 16px;
+      }
+      .content {
+        padding: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .extend-btn {
+        background-color: #28a745;
+        color: white;
+      }
+      .extended-btn {
+        background-color: #dc3545;
+        color: white;
+        cursor: not-allowed;
+      }
+      .expired-btn {
+        background-color: #6c757d;
+        color: white;
+        cursor: not-allowed;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .modal.show {
+        display: block;
+        opacity: 1;
+      }
+      .modal-content {
+        background-color: white;
+        margin: 10% auto;
+        padding: 20px;
+        width: 50%;
+        max-width: 600px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .modal-title {
+        font-weight: bold;
+        color: #0066cc;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .modal-table {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .modal-table td {
+        padding: 8px;
+      }
+      .modal-table td:first-child {
+        font-weight: bold;
+        width: 40%;
+      }
+      .modal-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .cancel-btn,
+      .confirm-btn {
+        padding: 8px 20px;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        flex: 1;
+        max-width: 150px;
+      }
+      .cancel-btn {
+        background-color: #dc3545;
+        color: white;
+      }
+      .confirm-btn {
+        background-color: #28a745;
+        color: white;
+      }
+      .warning-message {
+        color: #dc3545;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+      }
+      .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header-container">
+      <img src="" alt="Logo" class="logo" />
+      <div class="header-text">
+        <h1>ĐẠI HỌC CÔNG THƯƠNG TP. HỒ CHÍ MINH</h1>
+        <p>TRUNG TÂM THÔNG TIN - THƯ VIỆN</p>
+      </div>
+    </div>
+
+    <div class="nav-container">
+      <a href="./MainPage.html" class="home-link" id="homeLink">Trang chủ</a>
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Nhập thông tin cần tìm!"
+        />
+        <button id="searchButton">Tìm</button>
+      </div>
+    </div>
+
+    <div class="page-title">Gia hạn tài liệu - phòng</div>
+    <div class="sub-title">TÀI LIỆU - SÁCH ĐANG MƯỢN</div>
+
+    <div class="content">
+      <table id="borrowedBooksTable">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>MÃ MƯỢN</th>
+            <th>TÊN SÁCH</th>
+            <th>NGÀY MƯỢN</th>
+            <th>NGÀY TRẢ</th>
+            <th>THỜI GIAN CÒN</th>
+            <th>GIA HẠN</th>
+          </tr>
+        </thead>
+        <tbody id="booksData"></tbody>
+      </table>
+    </div>
+
+    <div id="extendModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeExtendModal()">&times;</span>
+        <div class="modal-title">PHIẾU GIA HẠN</div>
+
+        <table class="modal-table">
+          <tr>
+            <td>MÃ ĐỘC GIẢ:</td>
+            <td id="readerCode">2014789653</td>
+          </tr>
+          <tr>
+            <td>TÊN ĐỘC GIẢ:</td>
+            <td id="readerName">Nguyễn Văn Tuấn</td>
+          </tr>
+          <tr>
+            <td>KHOA:</td>
+            <td id="faculty">Công nghệ thông tin</td>
+          </tr>
+          <tr>
+            <td>LỚP:</td>
+            <td id="class">DHTH08</td>
+          </tr>
+          <tr>
+            <td>ĐỐI TƯỢNG:</td>
+            <td id="readerType">Sinh viên</td>
+          </tr>
+          <tr>
+            <td>MÃ TÀI LIỆU:</td>
+            <td id="docCode">1004345678</td>
+          </tr>
+          <tr>
+            <td>TÊN TÀI LIỆU:</td>
+            <td id="docName">Cấu trúc rời rạc</td>
+          </tr>
+          <tr>
+            <td>TÁC GIẢ:</td>
+            <td id="author">Nguyễn Huỳnh A</td>
+          </tr>
+          <tr>
+            <td>NGÀY MƯỢN:</td>
+            <td id="currentBorrowDate">27/04/2025</td>
+          </tr>
+          <tr>
+            <td>NGÀY TRẢ HIỆN TẠI:</td>
+            <td id="currentReturnDate">04/05/2025</td>
+          </tr>
+          <tr>
+            <td>THỜI GIAN CÒN LẠI:</td>
+            <td id="remainingTime">03:17:48:59</td>
+          </tr>
+          <tr>
+            <td>NGÀY TRẢ MỚI:</td>
+            <td id="newReturnDate">11/05/2025</td>
+          </tr>
+        </table>
+
+        <div class="modal-actions">
+          <button class="cancel-btn" onclick="closeExtendModal()">
+            Hủy gia hạn
+          </button>
+          <button
+            class="confirm-btn"
+            id="confirmExtendBtn"
+            onclick="confirmExtend()"
+          >
+            Đồng ý gia hạn
+          </button>
+        </div>
+
+        <div id="expiredWarning" class="warning-message" style="display: none">
+          Sách chỉ còn dưới 12 tiếng trước hạn trả, không thể gia hạn!
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const books = [
+        {
+          id: 1,
+          code: "1004345678",
+          name: "Cấu trúc rời rạc",
+          borrowDate: "27/04/2025",
+          returnDate: "04/05/2025",
+          remainingTime: "00:11:30:00",
+          canExtend: false,
+          isExtended: false,
+        },
+        {
+          id: 2,
+          code: "1009876544",
+          name: "Thực hành CSDL",
+          borrowDate: "20/04/2025",
+          returnDate: "27/04/2025",
+          remainingTime: "03:17:48:59",
+          canExtend: true,
+          isExtended: false,
+        },
+        {
+          id: 3,
+          code: "1006875544",
+          name: "Công nghệ PM",
+          borrowDate: "24/04/2025",
+          returnDate: "01/05/2025",
+          remainingTime: "00:05:37:04",
+          canExtend: false,
+          isExtended: true,
+        },
+        {
+          id: 4,
+          code: "1001234567",
+          name: "Lập trình OOP",
+          borrowDate: "01/05/2025",
+          returnDate: "08/05/2025",
+          remainingTime: "01:00:00:00",
+          canExtend: true,
+          isExtended: false,
+        },
+      ];
+
+      function renderBooks() {
+        const tbody = document.getElementById("booksData");
+        tbody.innerHTML = books
+          .map(
+            (book) => `
+                <tr>
+                    <td>${book.id}</td>
+                    <td>${book.code}</td>
+                    <td>${book.name}</td>
+                    <td>${book.borrowDate}</td>
+                    <td>${book.returnDate}</td>
+                    <td>${book.remainingTime}</td>
+                    <td>
+                        <button class="btn ${
+                          book.isExtended
+                            ? "extended-btn"
+                            : !book.canExtend
+                            ? "expired-btn"
+                            : "extend-btn"
+                        }" 
+                                ${
+                                  book.isExtended || !book.canExtend
+                                    ? "disabled"
+                                    : ""
+                                }
+                                onclick="${
+                                  book.canExtend
+                                    ? `openExtendModal('${book.code}')`
+                                    : ""
+                                }">
+                            ${
+                              book.isExtended
+                                ? "ĐÃ GIA HẠN"
+                                : !book.canExtend
+                                ? "KHÔNG THỂ GIA HẠN"
+                                : "GIA HẠN"
+                            }
+                        </button>
+                    </td>
+                </tr>
+            `
+          )
+          .join("");
+      }
+
+      function openExtendModal(code) {
+        const book = books.find((b) => b.code === code);
+        if (!book) return;
+
+        const [d, m, y] = book.returnDate.split("/");
+        const returnDate = new Date(y, m - 1, d);
+        const newDate = new Date(returnDate);
+        newDate.setDate(newDate.getDate() + 7);
+
+        const formattedNewDate = `${newDate
+          .getDate()
+          .toString()
+          .padStart(2, "0")}/${(newDate.getMonth() + 1)
+          .toString()
+          .padStart(2, "0")}/${newDate.getFullYear()}`;
+
+        document.getElementById("docCode").textContent = book.code;
+        document.getElementById("docName").textContent = book.name;
+        document.getElementById("currentBorrowDate").textContent =
+          book.borrowDate;
+        document.getElementById("currentReturnDate").textContent =
+          book.returnDate;
+        document.getElementById("remainingTime").textContent =
+          book.remainingTime;
+        document.getElementById("newReturnDate").textContent = formattedNewDate;
+
+        const [days, hours] = book.remainingTime.split(":");
+        const warning = document.getElementById("expiredWarning");
+        const confirmBtn = document.getElementById("confirmExtendBtn");
+
+        warning.style.display =
+          days === "00" && parseInt(hours) < 12 ? "block" : "none";
+        confirmBtn.style.display =
+          days === "00" && parseInt(hours) < 12 ? "none" : "block";
+
+        document.getElementById("extendModal").classList.add("show");
+      }
+
+      function closeExtendModal() {
+        document.getElementById("extendModal").classList.remove("show");
+      }
+
+      function confirmExtend() {
+        const code = document.getElementById("docCode").textContent;
+        const newDate = document.getElementById("newReturnDate").textContent;
+        const book = books.find((b) => b.code === code);
+
+        if (book) {
+          book.returnDate = newDate;
+
+          const [days, hours, minutes, seconds] = book.remainingTime.split(":");
+          const newDays = parseInt(days) + 7;
+          book.remainingTime = `${newDays
+            .toString()
+            .padStart(2, "0")}:${hours}:${minutes}:${seconds}`;
+
+          book.isExtended = true;
+          book.canExtend = false;
+
+          renderBooks();
+
+          alert(
+            `Đã gia hạn thành công tài liệu mã ${code} đến ngày ${newDate}`
+          );
+        }
+
+        closeExtendModal();
+      }
+
+      document.getElementById("searchButton").addEventListener("click", () => {
+        const term = document.getElementById("searchInput").value.toLowerCase();
+        document
+          .querySelectorAll("#borrowedBooksTable tbody tr")
+          .forEach((row) => {
+            const name = row.cells[2].textContent.toLowerCase();
+            const code = row.cells[1].textContent.toLowerCase();
+            row.style.display =
+              name.includes(term) || code.includes(term) ? "" : "none";
+          });
+      });
+
+      document.getElementById("homeLink").addEventListener("click", () => {
+        alert("Chuyển về trang chủ");
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === document.getElementById("extendModal")) {
+          closeExtendModal();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          document.getElementById("extendModal").classList.contains("show")
+        ) {
+          closeExtendModal();
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        books.forEach((book) => {
+          const [days, hours] = book.remainingTime.split(":");
+          if (days === "00" && parseInt(hours) < 12 && !book.isExtended) {
+            book.canExtend = false;
+          }
+        });
+        renderBooks();
+      });
+    </script>
+  </body>
+</html>

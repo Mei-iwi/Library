@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tra cứu độc giả - Thư viện</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .header-container {
+        display: flex;
+        background-color: #007bff;
+        padding: 15px 20px;
+        color: white;
+        align-items: center;
+      }
+
+      .logo {
+        height: 60px;
+        margin-right: 20px;
+      }
+
+      .university-info {
+        flex-grow: 1;
+      }
+
+      .university-name {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .library-name {
+        font-size: 16px;
+      }
+
+      .banner {
+        font-size: 18px;
+        font-weight: bold;
+        padding-left: 20px;
+        border-left: 2px solid white;
+        margin-left: 20px;
+      }
+
+      .search-bar {
+        background-color: #0b0c66;
+        padding: 10px;
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        font-style: italic;
+      }
+
+      .search-section {
+        background-color: #f3f3f3;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search-input {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 300px;
+        font-size: 16px;
+      }
+
+      .search-button,
+      .exit-button {
+        padding: 10px 25px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .search-button {
+        background-color: #6c757d;
+        color: white;
+        margin-right: 5px;
+      }
+
+      .exit-button {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      .search-button:hover {
+        background-color: #5a6268;
+      }
+
+      .exit-button:hover {
+        opacity: 0.9;
+      }
+
+      .table-container {
+        margin: 20px;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        display: none;
+      }
+
+      th,
+      td {
+        border: 1px solid #aaa;
+        padding: 10px;
+      }
+
+      th {
+        background-color: #ccc;
+        font-size: 18px;
+      }
+
+      td {
+        background-color: #fff;
+      }
+
+      .no-data {
+        text-align: center;
+        padding: 20px;
+        font-size: 18px;
+        color: #666;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        margin: 20px;
+        border: 1px dashed #ccc;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header-container">
+      <img src="" alt="Logo" class="logo" />
+      <div class="university-info">
+        <div class="university-name">ĐẠI HỌC CÔNG THƯƠNG TP. HỒ CHÍ MINH</div>
+        <div class="library-name">TRUNG TÂM THÔNG TIN - THƯ VIỆN</div>
+      </div>
+      <div class="banner">HỌC HẾT SỨC - CHƠI HẾT MÌNH</div>
+    </div>
+
+    <div class="search-bar">Tìm kiếm độc giả</div>
+
+    <div class="search-section">
+      <div class="search-box">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Nhập thông tin cần tìm"
+          id="searchInput"
+        />
+        <button
+          style="margin-left: -7px; margin-right: 7px"
+          class="search-button"
+          id="searchButton"
+        >
+          Tìm
+        </button>
+        <a href="trangchuTT.html" class="exit-button">Thoát</a>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <div id="noDataMessage" class="no-data">
+        Không có dữ liệu độc giả nào được tìm thấy
+      </div>
+
+      <table id="resultsTable">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Mã số thẻ</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Niên khóa</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <script>
+      let sampleData = [];
+
+      function displayData(data) {
+        const table = document.getElementById("resultsTable");
+        const tableBody = document.getElementById("tableBody");
+        const noDataMessage = document.getElementById("noDataMessage");
+
+        tableBody.innerHTML = "";
+
+        if (data.length === 0) {
+          noDataMessage.style.display = "block";
+          table.style.display = "none";
+        } else {
+          noDataMessage.style.display = "none";
+          table.style.display = "table";
+
+          // Thêm dữ liệu vào bảng
+          data.forEach((reader, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${reader.id}</td>
+            <td>${reader.name}</td>
+            <td>${reader.dob}</td>
+            <td>${reader.year}</td>
+            <td>${reader.address}</td>
+            <td>${reader.phone}</td>
+          `;
+            tableBody.appendChild(row);
+          });
+        }
+      }
+
+      function handleSearch() {
+        const searchTerm = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+
+        if (searchTerm.trim() === "") {
+          displayData(sampleData);
+          return;
+        }
+
+        const filteredData = sampleData.filter(
+          (reader) =>
+            reader.id.toLowerCase().includes(searchTerm) ||
+            reader.name.toLowerCase().includes(searchTerm) ||
+            reader.dob.toLowerCase().includes(searchTerm) ||
+            reader.year.toLowerCase().includes(searchTerm) ||
+            reader.address.toLowerCase().includes(searchTerm) ||
+            reader.phone.toLowerCase().includes(searchTerm)
+        );
+
+        displayData(filteredData);
+      }
+
+      window.onload = function () {
+        displayData(sampleData);
+
+        document
+          .getElementById("searchButton")
+          .addEventListener("click", function () {
+            if (sampleData.length === 0) {
+              alert("Hiện không có dữ liệu độc giả nào trong hệ thống");
+            } else {
+              handleSearch();
+            }
+          });
+
+        document
+          .getElementById("searchInput")
+          .addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              if (sampleData.length === 0) {
+                alert("Hiện không có dữ liệu độc giả nào trong hệ thống");
+              } else {
+                handleSearch();
+              }
+            }
+          });
+      };
+
+      sampleData = [
+        {
+          id: "DG001",
+          name: "Nguyễn Văn A",
+          dob: "15/03/2000",
+          year: "2018-2022",
+          address: "123 Đường Lê Lợi, Q.1, TP.HCM",
+          phone: "0901234567",
+        },
+        {
+          id: "DG002",
+          name: "Trần Thị B",
+          dob: "22/07/2001",
+          year: "2019-2023",
+          address: "456 Đường Nguyễn Huệ, Q.1, TP.HCM",
+          phone: "0912345678",
+        },
+      ];
+      displayData(sampleData);
+    </script>
+  </body>
+</html>

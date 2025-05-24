@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/ReaderManagement.css" />
+    <link rel="stylesheet" href="../css/MainPage_Admin.css" />
+    <title>Handle Mistakes</title>
+    <style>
+        tr td:first-child{
+            width: 150px;
+        }
+        tr{
+            border: solid 1px;
+        }
+        #add table{
+            background-color: lightgray;
+            border:none
+        }
+        #add {
+            padding: 10px;
+            border: solid 1px black;
+        }
+      #add td{
+        height: 30px;;
+      }
+      #add h3{
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <div class="imgTitle"><img src="../Images/Logo.png" alt="" /></div>
+        <div class="titleHeader">
+          <strong
+            ><img src="../Images/book.png" alt="" />HỌC HẾT SỨC - CHƠI
+            HẾTMÌNH</strong
+          >
+        </div>
+      </div>
+      <div style="height: 50px;" class="navigation"></div></div>
+    </header>
+    <div id="add">
+        <button style="float: right;" onclick="closeFormAdd()"><img src="../Images/EXIST.png"></button>
+        <h3 id="title">THÔNG TIN VI PHẠM</h3>
+        <form>
+            <table>
+                <tr>
+                <td ><strong>Mã độc giả:</strong></td>
+                <td ></td>
+                </tr>
+               <tr>
+                <td >
+                    <strong>Tên độc giả:</strong>                    
+                </td>
+                <td ></td>
+               </tr>
+               <tr>
+                <td>
+                    <strong>Vai trò:</strong>
+                </td>
+                <td ></td>
+               </tr>
+               <tr>
+                <td>
+                    <strong>Lý do vi phạm:</strong>
+                </td>
+                <td ></td>
+               </tr>
+               <tr>
+                <td>
+                    <strong>Hình thức xử lý:</strong>
+                </td>
+                <td ></td>
+               </tr>
+              
+            </table>
+    </form>
+</div>
+        
+    </div>
+    <div class="containerManagement">
+        <h3>XỬ LÝ VI PHẠM</h3>
+        <div class="nav">
+            <div class="large">
+                <div class="small">
+                    <button type="submit" onclick="Add()"><img src="../Images/ADD.png"> <span>Thêm</span></button>
+                    <button type="submit" onclick="Delete()"><img src="../Images/EXIST.png"><span> Xóa</span></button>
+                    <button type="submit" onclick="showFormAdd()"><img src="../Images/INFO.png"> <span>Thông tin</span></button>
+                    <button type="submit" onclick=""><img src="../Images/NoticeBell.png"> <span>Thông báo</span></button>
+                    <button type="submit" onclick="location.href='trangchuTT.html'" ><img src="../Images/EXIST.png"><span>Thoát</span></button>
+                </div>
+            </div>
+        </div>
+        <div class="Info">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>MÃ ĐỘC GIẢ</th>
+                        <th>TÊN ĐỘC GIẢ</th>
+                        <th>LÍ DO VI PHẠM</th>
+                        <th>SỐ LẦN VI PHẠM</th>
+                        <th>THÒI GIAN TRỄ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>
+                        </td>
+                        <td >
+                            <div class="Request"><input type="text"> <button type="submit"><img src="../Images/loc.png"></button></div>
+                        </td>
+                        <td >
+                            <div class="Request"><input type="text"> <button type="submit"><img src="../Images/loc.png"></button></div>
+                        </td>
+                        <td >
+                            <div class="Request"><input type="text"> <button type="submit"><img src="../Images/loc.png"></button></div>
+                        </td>
+                        <td >
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../JS/ReaderManagement.js">
+    </script>
+    <script>
+        function Add(){
+            alert("Đã thêm độc giả vi phạm thành công")
+
+        }
+        function Delete(){
+            alert("Đã xóa độc giả vi phạm thành công")
+        }
+    </script>
+  </body>
+</html>

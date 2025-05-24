@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/ReaderManagement.css" />
+    <link rel="stylesheet" href="../css/MainPage_Admin.css" />
+    <title>Reader Management</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <div class="imgTitle"><img src="../Images/Logo.png" alt="" /></div>
+        <div class="titleHeader">
+          <strong
+            ><img src="../Images/book.png" alt="" />HỌC HẾT SỨC - CHƠI
+            HẾTMÌNH</strong
+          >
+        </div>
+      </div>
+      <div style="height: 50px;" class="navigation"></div></div>
+    </header>
+    <div id="add">
+
+        <h3 id="title">Thêm độc giả</h3>
+        <form>
+            <table>
+                <tr>
+                    <td colspan="1">Tên độc giả</td>
+                    <td colspan="5"><input type="text"></td>
+                </tr>
+                <tr>
+                    <td colspan="1">Mã độc giả</td>
+                    <td colspan="5"><input type="text"></td>
+
+                </tr>
+                <tr>
+                    <td colspan="1">Ngày sinh </td>
+                    <td colspan="2"><input type="text"></td>
+                    <td colspan="1">Giới tính</td>
+                    <td colspan="2"><select style="width: 90%;">
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                        <option value="different">Khác</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td colspan="1">Chức vụ <span style="color: red;">(*)</span> </td>
+                    <td colspan="2"><select id="position" onchange="showFormUpdate()">
+                        <option value="Students">Sinh viên</option>
+                        <option value="Lecturer">Giảng viên</option>
+                        <option value="ExternalReaders">Độc giả ngoài</option>
+                    </select></td>
+                    <td colspan="1">CCCD</td>
+                    <td colspan="2"><input type="text"></td>
+                </tr>
+                <tr>
+                    <td colspan="1" >Khoa</td>
+                    <td colspan="2"><input type="text" id="faculty"></td>
+                    <td colspan="1" >Lớp</td>
+                    <td colspan="2"><input type="text" id="class"></td>
+                </tr>
+                <tr>
+                    <td colspan="1">Số điện thoại</td>
+                    <td colspan="5"><input type="text"></td>
+
+                </tr>
+                <tr>
+                    <td colspan="1">Email</td>
+                    <td colspan="5"><input type="text"></td>
+                </tr>
+                <tr>
+                    <td colspan="1">Địa chỉ</td>
+                    <td colspan="5"><input type="text"></td>
+                    
+                </tr>
+            </table>
+            <div class="btn"><button><img src="../Images/check.png" alt=""><span> Lưu</span></button> <button onclick="closeFormAdd()"><img src="../Images/EXIST.png" alt=""><span>Hủy bỏ</span></button>
+                        </form>
+
+</div>
+    </div>
+    <div class="containerManagement">
+        <h3>QUẢN LÝ THÀNH VIÊN</h3>
+        <div class="nav">
+            <div class="large">
+                <div class="small">
+                    <button type="submit" onclick="showFormAdd()"><img src="../Images/ADD.png"> <span>Thêm</span></button>
+                    <button type="submit"onclick = "showFormUpdate()"><img src="../Images/UPDATE.png"> <span>Sửa</span></button>
+                    <button type="submit" onclick="NoticeDelete()"><img src="../Images/EXIST.png"><span> Xóa</span></button>
+                    <button type="submit" onclick="Information()"><img src="../Images/INFO.png"> <span>Thông tin</span></button>
+                    <button type="submit" onclick="location.href='trangchuTT.html'" ><img src="../Images/EXIST.png"><span>Thoát</span></button>
+                </div>
+            </div>
+        </div>
+        <div class="Info">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>MÃ ĐỘC GIẢ</th>
+                        <th>TÊN ĐỘC GIẢ</th>
+                        <th>VAI TRÒ</th>
+                        <th>NGÀY THAM GIA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>
+                        </td>
+                        <td >
+                            <div class="Request"><input type="text"> <button type="submit"><img src="../Images/loc.png"></button></div>
+                        </td>
+                        <td >
+                            <div class="Request"><input type="text"> <button type="submit"><img src="../Images/loc.png"></button></div>
+                        </td>
+                        <td >
+                            <div class="Request"><input type="text"> <button type="submit"><img src="../Images/loc.png"></button></div>
+                        </td>
+                        <td >
+                            <div class="Request"><input type="text"> <button type="submit"><img src="../Images/loc.png"></button></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../JS/ReaderManagement.js">
+    </script>
+  </body>
+</html>

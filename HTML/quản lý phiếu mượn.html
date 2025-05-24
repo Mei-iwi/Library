@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý phiếu mượn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 2px solid #0066cc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #0066cc;
+            color: #fff;
+        }
+        .details {
+            color: #ff0000;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .details:hover {
+            color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quản lý phiếu mượn</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã phiếu</th>
+                    <th>Tên sách</th>
+                    <th>Ngày mượn</th>
+                    <th>Ngày trả</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PM001</td>
+                    <td>Lập trình cơ bản</td>
+                    <td>10/05/2025</td>
+                    <td>20/05/2025</td>
+                    <td>Chưa trả</td>
+                    <td><span class="details">Xem chi tiết</span></td>
+                </tr>
+                <tr>
+                    <td>PM002</td>
+                    <td>Toán cao cấp</td>
+                    <td>01/05/2025</td>
+                    <td>10/05/2025</td>
+                    <td>Đã trả</td>
+                    <td><span class="details">Xem chi tiết</span></td>
+                </tr>
+                <tr>
+                    <td>PM003</td>
+                    <td>Văn học Việt Nam</td>
+                    <td>05/05/2025</td>
+                    <td>15/05/2025</td>
+                    <td>Quá hạn</td>
+                    <td><span class="details">Xem chi tiết</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.querySelectorAll('.details').forEach(item => {
+            item.addEventListener('click', () => {
+                alert('Chi tiết phiếu mượn sẽ được hiển thị tại đây!');
+            });
+        });
+    </script>
+</body>
+</html>

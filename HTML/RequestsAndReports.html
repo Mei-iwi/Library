@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/ReaderManagement.css" />
+    <link rel="stylesheet" href="../css/MainPage_Admin.css" />
+    <link rel="stylesheet" href="../css/AccountManagement.css">
+    <title>Human Resource Management</title>
+    <style>
+        tr td:first-child{
+            width: 150px;
+        }
+        tr{
+            border: solid 1px;
+        }
+        #add table{
+            background-color: lightgray;
+            border:none
+        }
+        #add {
+            padding: 10px;
+            border: solid 1px black;
+        }
+      #add td{
+        height: 30px;;
+      }
+      .navigation span{
+        color: red;;
+        font-size: 25px;
+        text-align: center;
+      }
+  
+      .navigation{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+     label{
+        color: black;
+        font-weight: normal;
+        font-style: italic;
+        font-family: Arial, Helvetica, sans-serif;
+     }
+      #add h3{
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      textarea{
+        width: 100%;
+        max-width: 1000px;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <div class="imgTitle"><img src="../Images/Logo.png" alt="" /></div>
+        <div class="titleHeader">
+          <strong
+            ><img src="../Images/book.png" alt="" />HỌC HẾT SỨC - CHƠI
+            HẾTMÌNH</strong
+          >
+         <div class="Search"> <input type="text" name="Search" placeholder="Nhập thông tin cần tìm!"> <button id="Search">Tìm</button></div>
+        </div>
+      </div>
+      <div style="height: 50px;" class="navigation">
+        <span>Duyệt báo cáo, yêu cầu</span>
+      </div></div>
+    </header>
+        <div class="Info">
+            <form>
+             <div class="btn"><button>Phê duyệt</button><button style="width: max-content;">Hủy phê duyệt</button><button>Từ chối</button><button type="button" onclick="location.href = 'MainPage_Admin.html'">Thoát</button></div>
+                <table>
+                    <tr>
+                        <td><label for="">Mã báo cáo <br><input type="text"></label></td>
+                        <td>
+                            <label for="">Tên báo cáo<input type="text"></label>
+                        </td>
+                        <td><label for="">Trạng thái <input type="text"></label></td>
+                    </tr>
+                    <tr style="position: relative;">
+                        <td colspan="3" style="height: 100px;">
+                            <label for="">Nội dung chi tiết <br> <textarea></textarea></label>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="Infotable">
+            <div class="title" id="title"><h2>Danh sách báo cáo</h2></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã báo cáo</th>
+                        <th>tên báo cáo</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div> 
+    <script src="../JS/AccountManagement.js">
+    </script>
+  </body>
+</html>

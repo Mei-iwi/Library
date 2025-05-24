@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng ký tài khoản đọc giả</title>
+    <link rel="stylesheet" href="../css/dangkycapthe.css" />
+  </head>
+  <body>
+    <header>
+      <img src="../Images/Logo.jpg" alt="Logo" />
+    </header>
+    <div class="container">
+      <form id="formInput">
+        <div class="thongtinchung">
+          <b>Thông tin chung</b>
+          <hr />
+          <table style="width: 100%">
+            <tr>
+              <td rowspan="5">
+                <img style="width: 200px" src="../Images/cat.jpg" alt="" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>CCCD/MSSV:</td>
+              <td>
+                <input style="width: 70%" type="text" name="maso" id="maso" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Họ và tên:</td>
+              <td>
+                <input style="width: 70%" type="text" name="hoten" id="hoten" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Ngày sinh:</td>
+              <td><input type="date" name="ngaysinh" id="ngaysinh" /></td>
+            </tr>
+
+            <tr>
+              <td>Giới tính:</td>
+              <td>
+                <input type="radio" name="gioitinh" value="male" id="nam" />
+                <label for="nam">Nam</label>
+
+                <input type="radio" name="gioitinh" value="female" id="nu" />
+                <label for="nu">Nữ</label>
+
+                <input type="radio" name="gioitinh" value="other" id="khac" />
+                <label for="khac">Khác</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="thongtinlienhe">
+          <b>Thông tin liên hệ</b>
+          <hr />
+          <table>
+            <tr>
+              <td>Địa chỉ:</td>
+              <td><input type="text" name="diachi" id="diachi" /></td>
+            </tr>
+            <tr>
+              <td>Đối tượng:</td>
+              <td><input type="text" name="doituong" id="doituong" /></td>
+            </tr>
+            <tr>
+              <td>Chức vụ, nghề nghiệp:</td>
+              <td><input type="text" name="chucvu" id="chucvu" /></td>
+            </tr>
+            <tr>
+              <td>Tên trường:</td>
+              <td><input type="text" name="tentruong" id="tentruong" /></td>
+            </tr>
+            <tr>
+              <td>Khóa học:</td>
+              <td><input type="text" name="khoahoc" id="khoahoc" /></td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td><input type="email" name="email" id="email" /></td>
+            </tr>
+            <tr>
+              <td>Điện thoại:</td>
+              <td><input type="tel" name="dienthoai" id="dienthoai" /></td>
+            </tr>
+            <tr>
+              <td>Ghi chú:</td>
+              <td>
+                <textarea
+                  id="ghichu"
+                  name="ghichu"
+                  rows="4"
+                  cols="50"
+                ></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="thongtintaikhoan">
+          <b>Thông tin tài khoản:</b>
+          <hr />
+          <table>
+            <tr>
+              <td>Nhập mật khẩu <b>*</b></td>
+              <td><input type="password" name="mk" id="mk" /></td>
+            </tr>
+            <tr>
+              <td>Nhập lại mật khẩu <b>*</b></td>
+              <td><input type="password" name="lmk" id="lmk" /></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="button">
+          <button type="submit">Đăng ký</button>
+          <button
+            style="width: 50px"
+            type="button"
+            onclick="location.href='Login.html'"
+          >
+            Hủy
+          </button>
+        </div>
+      </form>
+    </div>
+    <footer>
+      <strong>Trung tâm Thông tin - Thư viện Đại Học </strong>
+      <p>
+        Trường Đại Học Công Thương TP.HCM<br />
+        Địa chỉ liên hệ: 140 Lê Trọng Tấn, Tân Phú, TP. Hồ Chí Minh, Việt Nam<br />
+        Điện thoại: 028 3816 1673 - 137<br />
+        Email: thuvien@huit.edu.vn<br />
+        Hotline: 097 117 3837
+      </p>
+    </footer>
+
+    <script>
+      const form = document.getElementById("formInput");
+      const maso = document.getElementById("maso");
+      const hoten = document.getElementById("hoten");
+      const mk = document.getElementById("mk");
+      const lmk = document.getElementById("lmk");
+
+      maso.addEventListener("input", function () {
+        if (maso.value.length !== 13 || maso.value.length !== 10) {
+          maso.style.border = "3px solid red";
+        } else {
+          maso.style.border = "";
+        }
+      });
+
+      form.addEventListener("submit", function (event) {
+        let errors = [];
+
+        if (
+          !maso.value ||
+          maso.value.length !== 13 ||
+          maso.value.length !== 10
+        ) {
+          errors.push(
+            "Mã số không được để trống và nhỏ hơn hoặc bằng 13 ký tự"
+          );
+          maso.style.border = "3px solid red";
+        } else {
+          maso.style.border = "";
+        }
+
+        if (!hoten.value) {
+          errors.push("Họ và tên không được để trống");
+          hoten.style.border = "3px solid red";
+        } else {
+          hoten.style.border = "";
+        }
+
+        if (!mk.value) {
+          errors.push("Mật khẩu không được để trống");
+          mk.style.border = "3px solid red";
+        } else {
+          mk.style.border = "";
+        }
+
+        if (lmk.value !== mk.value) {
+          errors.push("Mật khẩu nhập lại không khớp");
+          lmk.style.border = "3px solid red";
+        } else {
+          lmk.style.border = "";
+        }
+
+        if (errors.length > 0) {
+          event.preventDefault();
+          alert(errors.join("\n"));
+        }
+      });
+    </script>
+  </body>
+</html>

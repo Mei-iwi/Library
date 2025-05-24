@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/BorrowDocuments.css" />
+    <title>Borrow Documents</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../Images/Logo.png" alt="" />
+      </div>
+      <div class="Navigation">
+        <div class="menu">
+          <ul class="MenuMainPage">
+            <li>
+              <img src="../Images/MainPage.png" />
+              <a href="./MainPage.html"> Trang chủ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="Search">
+          <input
+            class="SearchDocuments"
+            type="text"
+            placeholder="Nhập thông tin cần tìm!"
+          />
+          <button type="submit" class="btn_Search" onclick="fillTable()">
+            Tìm
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="TableInfo">
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Mã tài liệu</th>
+              <th>Tên tài liệu</th>
+              <th>Nhà xuất bản</th>
+              <th>Phí đảm bảo/quyển</th>
+              <th>Số lượng</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="borrowBook">
+        <div class="task">
+          <div class="InputInfo">
+            <input
+              type="text"
+              id="MaTL"
+              name="MaTL"
+              placeholder="Nhập mã tài liệu"
+            />
+            <input type=" text" id="SL" name="SL" placeholder="Số lượng" />
+          </div>
+          <button class="btn_Borrow">Đăng ký mượn</button>
+        </div>
+        <div class="TableBorrow">
+          <table>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Mã tài liệu</th>
+                <th>Tên tài liệu</th>
+                <th>Nhà xuất bản</th>
+                <th>Trạng thái</th>
+                <th>Số lượng</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="../JS/jquery-3.3.1.min.js"></script>
+
+    <script src="../JS/BorrowDocuments.js"></script>
+  </body>
+</html>

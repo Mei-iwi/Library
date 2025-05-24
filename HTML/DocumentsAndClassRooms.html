@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/ReaderManagement.css" />
+    <link rel="stylesheet" href="../css/MainPage_Admin.css" />
+    <link rel="stylesheet" href="../css/DocumentsAndClassRooms.css">
+    <title>Documents and ClassRooms Management</title>
+    <style>
+      .tableInfo table {
+        width: 100%;
+      }
+    table td{
+        text-align: center;
+    }
+    table tbody td button {
+        background-color:gray;
+        
+    }
+    table tbody td button:hover{
+        background-color: lightblue;
+    }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <div class="imgTitle"><img src="../Images/Logo.png" alt="" /></div>
+        <div class="titleHeader">
+          <strong
+            ><img src="../Images/book.png" alt="" />HỌC HẾT SỨC - CHƠI
+            HẾTMÌNH</strong
+          >
+        </div>
+      </div>
+      <div style="height: 50px;" class="navigation"></div></div>
+    </header>
+    <div id="requestDocuments">
+        <h2>THÔNG TIN PHIẾU YÊU CẦU</h2>
+        <form>
+        <table>
+            <tr>
+                <td colspan="1">Mã phiếu yêu cầu</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Yêu cầu</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Mã độc giả</td>
+                <td colspan="2"></td>
+                <td colspan="1" style="border-right:none;">Mã tài liệu - sách</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Tên độc giả</td>
+                <td colspan="2"></td>
+                 <td colspan="1" style="border-right:none;">Tên tài liệu - sách</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Vai trò</td>
+                <td colspan="2"></td>
+                 <td colspan="1" style="border-right:none;">Tác giả</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Khoa</td>
+                <td colspan="2"></td>
+                 <td colspan="1" style="border-right:none;">Nhà xuất bản</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Lớp</td>
+                <td colspan="2"></td>
+                <td colspan="1" style="border-right:none;">Ngôn ngữ</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Số lần gia hạn</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Ngày mượn</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Ngày trả</td>
+                <td colspan="5"></td>
+            </tr>
+        </table>
+        <div class="response"><button onclick="closeFormAdd()">Từ chối</button><button>Đồng ý</button></div>
+       </form>
+    </div>
+    <div id="requestClassrooms">
+         <h2>THÔNG TIN PHIẾU YÊU CẦU</h2>
+         <form>
+        <table>
+            <tr>
+                <td colspan="1">Mã phiếu yêu cầu</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Yêu cầu</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Mã độc giả</td>
+                <td colspan="2"></td>
+                <td colspan="1" style="border-right:none;">Mã phòng</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Tên độc giả</td>
+                <td colspan="2"></td>
+                 <td colspan="1" style="border-right:none;">Tên phòng</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Vai trò</td>
+                <td colspan="2"></td>
+                 <td colspan="1" style="border-right:none;">Vị trí phòng</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Khoa</td>
+                <td colspan="2"></td>
+                 <td colspan="1" style="border-right:none;">Trạng thái phòng</td>
+                <td colspan="2" style="border-left: none;"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Lớp</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Số lần gia hạn</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Thời gian mượn phòng</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="1">Thời gian trả phòng</td>
+                <td colspan="5"></td>
+            </tr>
+        </table>
+        <div class="response"><button onclick="closeFormAdd()">Từ chối</button><button>Đồng ý</button></div>
+        </form>
+    </div>  
+    </div>
+    <div class="containerManagement">
+        <h3>MƯỢN - TRẢ - GIA HẠN</h3>
+        <div class="nav">
+            <div class="large">
+                <div class="small">
+                    <button type="submit" onclick="Add()"><img src="../Images/ADD.png"> <span>Thêm</span></button>
+                    <button type="submit" onclick=""><img src="../Images/UPDATE.png"> <span> Sửa</span></button>
+                    <button type="submit" onclick="Delete()"><img src="../Images/EXIST.png"><span> Xóa</span></button>
+                    <button type="submit" onclick="location.href='trangchuTT.html'" ><img src="../Images/EXIST.png"><span>Thoát</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="function">
+            <div class="change">
+            <button type="submit" onclick="showTableDocument()" id="doc">Tài liệu - Sách</button>
+            <button onclick="showTableClassrooms()" id = "clas">Phòng học</button>
+        </div>
+        <div class="Search" ><input type="text" id="Search" name="Search" placeholder="Nhập thông tin cần tìm!"><button>Tìm</button></div>
+        </div>
+        <div class="tableInfo">
+            <div id="Documents">
+                 <table >
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã tài liệu</th>
+                        <th>Mã độc giả</th>
+                        <th>Yêu cầu</th>
+                        <th>Trạng thái xử lý</th>
+                        <th>Thông tin phiếu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button onclick="showInfoDocument()">
+                            thông tin phiếu
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+           <div id="classrooms">
+             <table >
+                <thead>
+                    <th>STT</th>
+                        <th>Mã phòng</th>
+                        <th>Mã độc giả</th>
+                        <th>Yêu cầu</th>
+                        <th>Trạng thái xử lý</th>
+                        <th>Thông tin phiếu</th>
+                </thead>
+                <tbody>
+                   <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button onclick="showInfoClassrooms()">
+                            thông tin phiếu
+                        </button></td>
+                </tbody>
+            </table>
+        </div>
+           
+         
+        </div>
+    </div>
+    <script src="../JS/DocumentsAndClassRooms.js">
+    </script>
+    <script src="../JS/ReaderManagement.js"></script>
+  </body>
+</html>

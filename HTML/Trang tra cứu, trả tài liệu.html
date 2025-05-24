@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang tra cứu, trả tài liệu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .logo {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-text h2 {
+            color: #0066cc;
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .header-text p {
+            margin: 5px 0 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .search-container {
+            background-color: #000;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        
+        .search-box {
+            display: flex;
+            flex: 1;
+        }
+        
+        .search-box input[type="text"] {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+        }
+        
+        .search-box button {
+            padding: 8px 15px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        .action-button {
+            padding: 8px 15px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .action-button.return {
+            background-color: #28a745;
+        }
+        
+        .search-box button:hover {
+            background-color: #0055aa;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        .notification {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .section-title {
+            margin: 20px 0 10px;
+            color: #0066cc;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <img src="" alt="Logo" class="logo">
+        <div class="header-text">
+            <h2>ĐẠI HỌC CÔNG THƯƠNG TP. HỒ CHÍ MINH</h2>
+            <p>TRUNG TÂM THÔNG TIN - THƯ VIỆN</p>
+        </div>
+    </div>
+    
+    <div class="search-container">
+        <a class="home-link" id="homeLink">Trang chủ</a>
+        <div class="search-box">
+            <input type="text" id="borrowCodeInput" placeholder="Nhập mã mượn">
+            <button id="searchButton">Tìm</button>
+            <button id="returnButton" class="action-button return">Trả tài liệu</button>
+            <button id="reportLostButton" class="action-button">Báo mất</button>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h3 class="section-title">Phiếu mượn</h3>
+        <table id="borrowTicketTable">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã mượn</th>
+                    <th>Số lượng</th>
+                    <th>Ngày mượn</th>
+                    <th>Ngày trả</th>
+                    <th>Phí đã nộp</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+            </tbody>
+        </table>
+        
+        <h3 class="section-title">Chi tiết tài liệu đã mượn</h3>
+        <table id="borrowedDocsTable">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã tài liệu</th>
+                    <th>Tên tài liệu</th>
+                    <th>Nhà xuất bản</th>
+                    <th>Trạng thái</th>
+                    <th>Số lượng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+            </tbody>
+        </table>
+        
+        <div id="notification" class="notification"></div>
+    </div>
+    
+    <script>
+        // Dữ liệu mẫu
+        const borrowTickets = [
+            { id: 1, code: "MUON001", quantity: 3, borrowDate: "15/05/2023", returnDate: "30/05/2023", fee: "75.000VND", status: "Đang mượn" },
+            { id: 2, code: "MUON002", quantity: 2, borrowDate: "10/05/2023", returnDate: "25/05/2023", fee: "50.000VND", status: "Đã trả" }
+        ];
+
+        const borrowedDocuments = [
+            { id: 1, ticketCode: "MUON001", docCode: "1002345678", name: "Cấu trúc rời rạc", publisher: "ĐH Công Thương", status: "Đang mượn", quantity: 1 },
+            { id: 2, ticketCode: "MUON001", docCode: "1003345678", name: "Toán cao cấp", publisher: "ĐH Sài Gòn", status: "Đang mượn", quantity: 2 },
+            { id: 3, ticketCode: "MUON002", docCode: "1004345678", name: "Lập trình Python", publisher: "NXB Giáo dục", status: "Đã trả", quantity: 1 },
+            { id: 4, ticketCode: "MUON002", docCode: "1005345678", name: "Cơ sở dữ liệu", publisher: "GV biên soạn", status: "Đã trả", quantity: 1 }
+        ];
+
+        const borrowCodeInput = document.getElementById("borrowCodeInput");
+        const searchButton = document.getElementById("searchButton");
+        const returnButton = document.getElementById("returnButton");
+        const reportLostButton = document.getElementById("reportLostButton");
+        const homeLink = document.getElementById("homeLink");
+        const borrowTicketTable = document.getElementById("borrowTicketTable").getElementsByTagName("tbody")[0];
+        const borrowedDocsTable = document.getElementById("borrowedDocsTable").getElementsByTagName("tbody")[0];
+        const notification = document.getElementById("notification");
+        
+        function populateBorrowTicketTable(tickets = borrowTickets) {
+            borrowTicketTable.innerHTML = "";
+            tickets.forEach(ticket => {
+                const row = borrowTicketTable.insertRow();
+                row.insertCell(0).textContent = ticket.id;
+                row.insertCell(1).textContent = ticket.code;
+                row.insertCell(2).textContent = ticket.quantity;
+                row.insertCell(3).textContent = ticket.borrowDate;
+                row.insertCell(4).textContent = ticket.returnDate;
+                row.insertCell(5).textContent = ticket.fee;
+                row.insertCell(6).textContent = ticket.status;
+            });
+        }
+        
+        function populateBorrowedDocsTable(ticketCode = "") {
+            borrowedDocsTable.innerHTML = "";
+            let filteredDocs = borrowedDocuments;
+            
+            if (ticketCode) {
+                filteredDocs = borrowedDocuments.filter(doc => doc.ticketCode === ticketCode);
+            }
+            
+            filteredDocs.forEach(doc => {
+                const row = borrowedDocsTable.insertRow();
+                row.insertCell(0).textContent = doc.id;
+                row.insertCell(1).textContent = doc.docCode;
+                row.insertCell(2).textContent = doc.name;
+                row.insertCell(3).textContent = doc.publisher;
+                row.insertCell(4).textContent = doc.status;
+                row.insertCell(5).textContent = doc.quantity;
+            });
+        }
+        
+        function showNotification(message, isSuccess) {
+            notification.textContent = message;
+            notification.className = "notification " + (isSuccess ? "success" : "error");
+            notification.style.display = "block";
+            
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 5000);
+        }
+        
+        function searchBorrowTicket() {
+            const searchTerm = borrowCodeInput.value.trim().toUpperCase();
+            
+            if (!searchTerm) {
+                populateBorrowTicketTable();
+                populateBorrowedDocsTable();
+                return;
+            }
+            
+            const filteredTickets = borrowTickets.filter(ticket => 
+                ticket.code.includes(searchTerm)
+            );
+            
+            populateBorrowTicketTable(filteredTickets);
+            populateBorrowedDocsTable(searchTerm);
+        }
+        
+        function returnDocuments() {
+            const ticketCode = borrowCodeInput.value.trim().toUpperCase();
+            
+            if (!ticketCode) {
+                showNotification("Vui lòng nhập mã mượn", false);
+                return;
+            }
+            
+            const ticketIndex = borrowTickets.findIndex(ticket => ticket.code === ticketCode);
+            
+            if (ticketIndex === -1) {
+                showNotification("Không tìm thấy phiếu mượn với mã đã nhập", false);
+                return;
+            }
+            
+            // Cập nhật trạng thái
+            borrowTickets[ticketIndex].status = "Đã trả";
+            
+            // Cập nhật trạng thái tài liệu
+            borrowedDocuments.forEach(doc => {
+                if (doc.ticketCode === ticketCode) {
+                    doc.status = "Đã trả";
+                }
+            });
+            
+            populateBorrowTicketTable();
+            populateBorrowedDocsTable(ticketCode);
+            
+            showNotification("Trả tài liệu thành công", true);
+        }
+        
+        function reportLostDocuments() {
+            const ticketCode = borrowCodeInput.value.trim().toUpperCase();
+            
+            if (!ticketCode) {
+                showNotification("Vui lòng nhập mã mượn", false);
+                return;
+            }
+            
+            const ticketIndex = borrowTickets.findIndex(ticket => ticket.code === ticketCode);
+            
+            if (ticketIndex === -1) {
+                showNotification("Không tìm thấy phiếu mượn với mã đã nhập", false);
+                return;
+            }
+            
+            // Cập nhật trạng thái
+            borrowTickets[ticketIndex].status = "Báo mất";
+            
+            // Cập nhật trạng thái tài liệu
+            borrowedDocuments.forEach(doc => {
+                if (doc.ticketCode === ticketCode) {
+                    doc.status = "Báo mất";
+                }
+            });
+            
+            populateBorrowTicketTable();
+            populateBorrowedDocsTable(ticketCode);
+            
+            showNotification("Báo mất tài liệu thành công", true);
+        }
+        
+        searchButton.addEventListener("click", searchBorrowTicket);
+        returnButton.addEventListener("click", returnDocuments);
+        reportLostButton.addEventListener("click", reportLostDocuments);
+        
+        // Khởi tạo bảng khi tải trang
+        populateBorrowTicketTable();
+        populateBorrowedDocsTable();
+    </script>
+</body>
+</html>

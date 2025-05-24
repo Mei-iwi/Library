@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng ký tài khoản đọc giả</title>
+    <link rel="stylesheet" href="../css/caplaithe.css" />
+    <style>
+      table {
+        border-spacing: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Đăng ký cấp thẻ</h1>
+    <div class="container">
+      <div class="head"><b>Đăng ký cấp thẻ</b></div>
+      <p>Thông tin cá nhân</p>
+      <hr />
+      <div class="content">
+        <table>
+          <tr>
+            <td id="dauhang">CCCD/MSSV:</td>
+            <td><input type="text" name="used" id="used" /></td>
+          </tr>
+          <tr>
+            <td id="dauhang">Họ và tên:</td>
+            <td><input type="text" name="used" id="used" /></td>
+          </tr>
+          <tr>
+            <td id="dauhang">Ngày sinh:</td>
+            <td><input type="date" name="used" id="used" /></td>
+          </tr>
+          <tr>
+            <td id="dauhang">Giới tính:</td>
+            <td>
+              <input type="radio" name="gender" value="male" id="gt" />
+              <label for="for">Nam</label>
+              <input type="radio" name="gender" value="female" id="gt" />
+              <label for="for">Nữ</label>
+              <input type="radio" name="gender" value="other" id="gt" />
+              <label for="for">Khác</label>
+            </td>
+          </tr>
+        </table>
+        <div class="button">
+          <button onclick="location.href=''" type="submit">Đăng ký thẻ</button>
+          <button onclick="location.href='MainPage.html'" type="button">
+            Thoát
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

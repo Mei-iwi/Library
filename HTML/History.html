@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tra cứu lịch sử mượn</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+      .header {
+        background-color: black;
+        color: white;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+      }
+      .header img {
+        height: 40px;
+        margin-right: 10px;
+      }
+      .header span {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .title {
+        text-align: center;
+        color: #0056d6;
+        font-weight: bold;
+        font-size: 18px;
+        margin: 10px 0;
+      }
+      .menu {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        gap: 30px;
+      }
+      .menu label {
+        font-size: 16px;
+      }
+      table {
+        width: 90%;
+        margin: 0 auto 40px auto;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px 12px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .hidden {
+        display: none;
+      }
+      .legend span {
+        margin-right: 20px;
+      }
+      .green-dot,
+      .gray-dot {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+      }
+      .green-dot {
+        background-color: #00cc66;
+      }
+      .gray-dot {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/vi/9/9f/Logo_HUIT.png"
+        alt="logo"
+      />
+      <span>Trang chủ</span>
+    </div>
+
+    <div class="title">
+      ĐẠI HỌC CÔNG THƯƠNG TP. HỒ CHÍ MINH<br />
+      TRUNG TÂM THÔNG TIN - THƯ VIỆN
+    </div>
+
+    <div class="menu">
+      <label
+        ><input
+          type="radio"
+          name="view"
+          onclick="showTable('document')"
+          checked
+        />
+        Lịch sử mượn tài liệu</label
+      >
+      <label
+        ><input type="radio" name="view" onclick="showTable('room')" /> Lịch sử
+        mượn phòng</label
+      >
+    </div>
+
+    <!-- BẢNG MƯỢN TÀI LIỆU -->
+    <table id="documentTable">
+      <tr>
+        <th>STT</th>
+        <th>Mã tài liệu</th>
+        <th>Tên tài liệu</th>
+        <th>Nhà xuất bản</th>
+        <th>Chi phí mượn</th>
+        <th>Số lượng</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2458796324</td>
+        <td>Cấu trúc rời rạc</td>
+        <td>HUIT</td>
+        <td>30.000</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>2458796329</td>
+        <td>Thiết kế web</td>
+        <td>NXB giáo dục</td>
+        <td>25.000</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>2458796322</td>
+        <td>Cấu trúc dữ liệu</td>
+        <td>Công thương</td>
+        <td>40.000</td>
+        <td>2</td>
+      </tr>
+    </table>
+
+    <!-- BẢNG MƯỢN PHÒNG -->
+    <table id="roomTable" class="hidden">
+      <tr>
+        <th>STT</th>
+        <th>Mã phòng</th>
+        <th>Tên phòng</th>
+        <th>Thời gian bắt đầu</th>
+        <th>Thời gian kết thúc</th>
+        <th>Tình trạng</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>PH01</td>
+        <td>Phòng họp</td>
+        <td>12h00.15/05/2025</td>
+        <td>14h00.15/05/2025</td>
+        <td>Không gia hạn</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>PH02</td>
+        <td>Phòng máy chiếu</td>
+        <td>13h00.21/12/2024</td>
+        <td>17h00.21/12/2024</td>
+        <td>Không gia hạn</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>PH01</td>
+        <td>Phòng họp</td>
+        <td>13h00.03/12/2024</td>
+        <td>15h00.03/12/2024</td>
+        <td>Có gia hạn</td>
+      </tr>
+    </table>
+
+    <script>
+      function showTable(type) {
+        document
+          .getElementById("documentTable")
+          .classList.toggle("hidden", type !== "document");
+        document
+          .getElementById("roomTable")
+          .classList.toggle("hidden", type !== "room");
+      }
+    </script>
+  </body>
+</html>

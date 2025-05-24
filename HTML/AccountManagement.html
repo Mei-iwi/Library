@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/ReaderManagement.css" />
+    <link rel="stylesheet" href="../css/MainPage_Admin.css" />
+    <link rel="stylesheet" href="../css/AccountManagement.css">
+    <title>Account Management</title>
+    <style>
+        tr td:first-child{
+            width: 150px;
+        }
+        tr{
+            border: solid 1px;
+        }
+        #add table{
+            background-color: lightgray;
+            border:none
+        }
+        #add {
+            padding: 10px;
+            border: solid 1px black;
+        }
+      #add td{
+        height: 30px;;
+      }
+      #add h3{
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <div class="imgTitle"><img src="../Images/Logo.png" alt="" /></div>
+        <div class="titleHeader">
+          <strong
+            ><img src="../Images/book.png" alt="" />HỌC HẾT SỨC - CHƠI
+            HẾTMÌNH</strong
+          >
+         <div class="Search"> <input type="text" name="Search" placeholder="Nhập thông tin cần tìm!"> <button id="Search">Tìm</button></div>
+        </div>
+      </div>
+      <div style="height: 50px;" class="navigation"></div></div>
+    </header>
+    <div class="containerManagementAccount">
+        <div class="select">
+            <label><input type="radio" name="selectItems" value="reader" checked onchange="changeItems()"><span>Tài khoản độc giả</span></label>
+            <label><input type="radio" name="selectItems" value="staff" onchange="changeItems()"><span>Tài khoản nhân viên</span></label>       
+        </div>
+        <div class="Info">
+            <form>
+                <table>
+                    <tr>
+                        <td>Họ tên:</td>
+                        <td colspan="2"><Input type="text"></Input></td>
+                        <td>Email:</td>
+                         <td colspan="2"><Input type="text"></Input></td>
+                    </tr>
+                    <tr>
+                        <td>Tài khoản:</td>
+                          <td colspan="2"><Input type="text"></Input></td>
+                        <td>Mật khẩu:</td>
+                          <td colspan="2"><Input type="text"></Input></td>
+                    </tr>
+                </table>
+                <div class="btn"><button>Cập nhật</button><button type="button"  onclick="location.href = 'MainPage_Admin.html'">Thoát</button></div>
+            </form>
+        </div>
+        <div class="Infotable">
+            <div class="title" id="title"><h2>Thông tin tài khoản độc giả</h2></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Họ tên</th>
+                        <th>Tài khoản</th>
+                        <th>Mật khẩu</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div> 
+    <script src="../JS/AccountManagement.js">
+    </script>
+  </body>
+</html>
